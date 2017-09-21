@@ -1,11 +1,6 @@
 var pet = require('../schemas/pet');
 
 exports.createPet = {
-    auth: {
-        mode: 'required',
-        strategy: 'session',
-        scope: ['admin']
-    },
     handler: function (request, reply) {
         var unique = true;
 
@@ -33,11 +28,6 @@ exports.createPet = {
 };
 
 exports.getPets = {
-    auth: {
-        mode: 'required',
-        strategy: 'session',
-        scope: ['admin', 'regular']
-    },
     handler: function (request, reply) {
         var Pets = pet.find({});
         return reply(Pets);
@@ -45,11 +35,6 @@ exports.getPets = {
 };
 
 exports.editPet = {
-    auth: {
-        mode: 'required',
-        strategy: 'session',
-        scope: ['admin']
-    },
     handler: function (request, reply) {
         var Pet = pet.find({ IDPet: request.params.IDPet });
         Pet.update({ $set: request.payload }, function (err) {
@@ -63,11 +48,6 @@ exports.editPet = {
 };
 
 exports.deletePet = {
-    auth: {
-        mode: 'required',
-        strategy: 'session',
-        scope: ['admin']
-    },
     handler: function (request, reply) {
         var petByID = pet.findOne({ IDPet: request.params.IDPet });
         petByID.remove(function (err) {
@@ -81,11 +61,6 @@ exports.deletePet = {
 };
 
 exports.getPetByID = {
-    auth: {
-        mode: 'required',
-        strategy: 'session',
-        scope: ['admin', 'regular']
-    },
     handler: function (request, reply) {
         var petById = pet.find({ IDPet: request.params.IDPet });
         return reply(petById);

@@ -3,10 +3,6 @@ var boom = require('boom');
 var bcrypt = require('bcrypt');
 
 exports.createPerson = {
-	auth: {
-		mode: 'try',
-		strategy: 'session'
-	},
 	handler: function (request, reply) {
 		bcrypt.hash(request.payload.password, 10, function (err, hash) {
 			if (err)
@@ -52,11 +48,6 @@ exports.createPerson = {
 };
 
 exports.getPeople = {
-	/*auth: {
-		mode: 'required',
-		strategy: 'session',
-		scope: ['admin', 'regular']
-	},*/
 	handler: function (request, reply) {
 		var People = person.find({});
 		return reply(People);
@@ -64,11 +55,6 @@ exports.getPeople = {
 };
 
 exports.editPerson = {
-	auth: {
-		mode: 'required',
-		strategy: 'session',
-		scope: ['regular']
-	},
 	handler: function (request, reply) {
 		var Person = person.find({ IDPerson: request.params.IDPerson });
 		Person.update({ $set: request.payload }, function (err) {
@@ -82,11 +68,6 @@ exports.editPerson = {
 };
 
 exports.deletePerson = {
-	auth: {
-		mode: 'required',
-		strategy: 'session',
-		scope: ['regular']
-	},
 	handler: function (request, reply) {
 		var personByID = person.findOne({ IDPerson: request.params.IDPerson });
 		personByID.remove(function (err) {
@@ -100,11 +81,6 @@ exports.deletePerson = {
 };
 
 exports.getPersonByID = {
-	auth: {
-		mode: 'required',
-		strategy: 'session',
-		scope: ['admin', 'regular']
-	},
 	handler: function (request, reply) {
 		var personByID = person.find({ IDPerson: request.params.IDPerson });
 		return reply(personByID);
@@ -112,11 +88,6 @@ exports.getPersonByID = {
 };
 
 exports.addPetToPerson = {
-	auth: {
-		mode: 'required',
-		strategy: 'session',
-		scope: ['regular']
-	},
 	handler: function (request, reply) {
 		var pets = person.find({ IDPerson: request.params.IDPerson });
 		pets.update({ $push: { listOfPets: request.payload.listOfPets } }, function (err) {
@@ -130,11 +101,6 @@ exports.addPetToPerson = {
 };
 
 exports.deletePetFromPerson = {
-	auth: {
-		mode: 'required',
-		strategy: 'session',
-		scope: ['regular']
-	},
 	handler: function (request, reply) {
 		var pets = person.find({ IDPerson: request.params.IDPerson });
 		pets.update({ $pull: { listOfPets: request.payload.listOfPets } }, function (err) {
@@ -148,11 +114,6 @@ exports.deletePetFromPerson = {
 };
 
 exports.addFriend = {
-	auth: {
-		mode: 'required',
-		strategy: 'session',
-		scope: ['regular']
-	},
 	handler: function (request, reply) {
 		var friends = person.find({ IDPerson: request.params.IDPerson });
 		friends.update({ $push: { listOfFriends: request.payload.listOfFriends } }, function (err) {
@@ -166,11 +127,6 @@ exports.addFriend = {
 };
 
 exports.deleteFriend = {
-	auth: {
-		mode: 'required',
-		strategy: 'session',
-		scope: ['regular']
-	},
 	handler: function (request, reply) {
 		var friends = person.find({ IDPerson: request.params.IDPerson });
 		friends.update({ $pull: { listOfFriends: request.payload.listOfFriends } }, function (err) {
