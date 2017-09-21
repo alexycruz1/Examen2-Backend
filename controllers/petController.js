@@ -16,7 +16,7 @@ exports.createPet = {
                     IDPet: ID,
                     name: request.payload.name,
                     owner: request.payload.owner,
-                    available: request.payload.available,
+                    available: request.payload.available
                 });
 
                 newPet.save();
