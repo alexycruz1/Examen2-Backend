@@ -12,7 +12,7 @@ server.connection({
 });
 
 //mongoose.connect('mongodb://127.0.0.1:27017/IncubadoraDeNegocios');
-mongoose.connect('mongodb://localhost:27017/PruebaExamen');
+mongoose.connect('mongodb://admin:admin@ds141534.mlab.com:41534/pets-home');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', function callback() {
@@ -22,7 +22,7 @@ db.once('open', function callback() {
 server.register([inert, auth], function(err){
 
  server.auth.strategy('session', 'cookie', {
-    password: 'minimum-32-characters-password1234567890',
+    password: /*'minimum-32-characters-password1234567890'*/ 'secretpasswordforencryption',
     cookie: 'angular-scaffold-cookie',
     ttl: 24 * 60 * 60 * 1000, // Set session to 1 day
     isSecure: false
