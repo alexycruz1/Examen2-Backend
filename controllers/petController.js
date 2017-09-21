@@ -18,7 +18,6 @@ exports.createPet = {
                     owner: request.payload.owner,
                     available: request.payload.available
                 });
-
                 newPet.save();
             } else {
                 reply('Error');
