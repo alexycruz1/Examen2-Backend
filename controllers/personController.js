@@ -52,11 +52,11 @@ exports.createPerson = {
 };
 
 exports.getPeople = {
-	auth: {
+	/*auth: {
 		mode: 'required',
 		strategy: 'session',
 		scope: ['admin', 'regular']
-	},
+	},*/
 	handler: function (request, reply) {
 		var People = person.find({});
 		return reply(People);
@@ -115,7 +115,7 @@ exports.addPetToPerson = {
 	auth: {
 		mode: 'required',
 		strategy: 'session',
-		scope: ['admin', 'regular']
+		scope: ['regular']
 	},
 	handler: function (request, reply) {
 		var pets = person.find({ IDPerson: request.params.IDPerson });
@@ -133,7 +133,7 @@ exports.deletePetFromPerson = {
 	auth: {
 		mode: 'required',
 		strategy: 'session',
-		scope: ['admin', 'regular']
+		scope: ['regular']
 	},
 	handler: function (request, reply) {
 		var pets = person.find({ IDPerson: request.params.IDPerson });
@@ -148,6 +148,11 @@ exports.deletePetFromPerson = {
 };
 
 exports.addFriend = {
+	auth: {
+		mode: 'required',
+		strategy: 'session',
+		scope: ['regular']
+	},
 	handler: function (request, reply) {
 		var friends = person.find({ IDPerson: request.params.IDPerson });
 		friends.update({ $push: { listOfFriends: request.payload.listOfFriends } }, function (err) {
@@ -161,6 +166,11 @@ exports.addFriend = {
 };
 
 exports.deleteFriend = {
+	auth: {
+		mode: 'required',
+		strategy: 'session',
+		scope: ['regular']
+	},
 	handler: function (request, reply) {
 		var friends = person.find({ IDPerson: request.params.IDPerson });
 		friends.update({ $pull: { listOfFriends: request.payload.listOfFriends } }, function (err) {

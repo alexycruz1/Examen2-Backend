@@ -4,7 +4,7 @@ exports.createPet = {
     auth: {
         mode: 'required',
         strategy: 'session',
-        scope: ['admin', 'regular']
+        scope: ['admin']
     },
     handler: function (request, reply) {
         var unique = true;

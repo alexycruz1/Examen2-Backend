@@ -46,12 +46,12 @@ exports.endpoints = [
 	},
 	{
 		method: 'PUT',
-		path: '/IDN/addFriend/{IDPerson}',
+		path: '/PE2/addFriend/{IDPerson}',
 		config: person.addFriend
 	},
 	{
 		method: 'PUT',
-		path: '/IDN/deleteFriend/{IDPerson}',
+		path: '/PE2/deleteFriend/{IDPerson}',
 		config: person.deleteFriend
 	},
 
