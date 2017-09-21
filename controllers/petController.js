@@ -19,6 +19,8 @@ exports.createPet = {
                     available: request.payload.available,
                 });
 
+                console.log('llegue');
+
                 newPet.save();
             } else {
                 reply('Error');
