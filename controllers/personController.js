@@ -26,11 +26,7 @@ exports.createPerson = {
 					var newPerson = new person({
 						IDPerson: ID,
 						username: request.payload.username,
-						password: hash,
-						scope: request.payload.scope,
-						name: request.payload.name,
-						age: request.payload.age,
-						listOfPets: request.payload.listOfPets
+						password: hash
 					});
 
 					if (unique) {
@@ -84,57 +80,5 @@ exports.getPersonByID = {
 	handler: function (request, reply) {
 		var personByID = person.find({ IDPerson: request.params.IDPerson });
 		return reply(personByID);
-	}
-};
-
-exports.addPetToPerson = {
-	handler: function (request, reply) {
-		var pets = person.find({ IDPerson: request.params.IDPerson });
-		pets.update({ $push: { listOfPets: request.payload.listOfPets } }, function (err) {
-			if (err) {
-				reply('Error');
-			} else {
-				reply('pet added to person');
-			}
-		});
-	}
-};
-
-exports.deletePetFromPerson = {
-	handler: function (request, reply) {
-		var pets = person.find({ IDPerson: request.params.IDPerson });
-		pets.update({ $pull: { listOfPets: request.payload.listOfPets } }, function (err) {
-			if (err) {
-				reply('Error');
-			} else {
-				reply('pet deleted from person');
-			}
-		});
-	}
-};
-
-exports.addFriend = {
-	handler: function (request, reply) {
-		var friends = person.find({ IDPerson: request.params.IDPerson });
-		friends.update({ $push: { listOfFriends: request.payload.listOfFriends } }, function (err) {
-			if (err) {
-				reply('Error');
-			} else {
-				reply('Person added to friends');
-			}
-		});
-	}
-};
-
-exports.deleteFriend = {
-	handler: function (request, reply) {
-		var friends = person.find({ IDPerson: request.params.IDPerson });
-		friends.update({ $pull: { listOfFriends: request.payload.listOfFriends } }, function (err) {
-			if (err) {
-				reply('Error');
-			} else {
-				reply('person deleted from friends');
-			}
-		});
 	}
 };

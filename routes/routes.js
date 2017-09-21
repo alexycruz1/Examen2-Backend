@@ -1,6 +1,5 @@
 var person = require('../controllers/personController');
-var pet = require('../controllers/petController');
-var employee = require('../controllers/employeeController');
+var bomb = require('../controllers/bombController');
 var authentication = require('../controllers/authController');
 
 exports.endpoints = [
@@ -30,97 +29,36 @@ exports.endpoints = [
 		config: person.getPeople
 	},
 	{
-		method: 'PUT',
-		path: '/PE2/addPetToPerson/{IDPerson}',
-		config: person.addPetToPerson
-	},
-	{
-		method: 'PUT',
-		path: '/PE2/deletePetFromPerson/{IDPerson}',
-		config: person.deletePetFromPerson
-	},
-	{
 		method: 'GET',
 		path: '/PE2/PersonByID/{IDPerson}',
 		config: person.getPersonByID
 	},
-	{
-		method: 'PUT',
-		path: '/PE2/addFriend/{IDPerson}',
-		config: person.addFriend
-	},
-	{
-		method: 'PUT',
-		path: '/PE2/deleteFriend/{IDPerson}',
-		config: person.deleteFriend
-	},
 
-	/*Aqui terminan los endpoints de person*/
+	/*aqui termina persona*/
 
 	{
 		method: 'POST',
-		path: '/PE2/Pet',
-		config: pet.createPet
+		path: '/PE2/Bomb',
+		config: bomb.createBomb
 	},
 	{
 		method: 'PUT',
-		path: '/PE2/Pet/{IDPet}',
-		config: pet.editPet
+		path: '/PE2/Bomb/{IDBomb}',
+		config: bomb.editBomb
 	},
 	{
 		method: 'DELETE',
-		path: '/PE2/Pet/{IDPet}',
-		config: pet.deletePet
+		path: '/PE2/Bomb/{IDBomb}',
+		config: bomb.deleteBomb
 	},
 	{
 		method: 'GET',
-		path: '/PE2/Pets',
-		config: pet.getPets
+		path: '/PE2/Bombs',
+		config: bomb.getBombs
 	},
 	{
 		method: 'GET',
-		path: '/PE2/PetByID/{IDPet}',
-		config: pet.getPetByID
-	},
-
-	/*Aqui terminan los endpoints de pet*/
-
-	{
-		method: 'POST',
-		path: '/PE2/Employee',
-		config: employee.createEmployee
-	},
-	{
-		method: 'PUT',
-		path: '/PE2/Employee/{IDEmployee}',
-		config: employee.editEmployee
-	},
-	{
-		method: 'DELETE',
-		path: '/PE2/Employee/{IDEmployee}',
-		config: employee.deleteEmployee
-	},
-	{
-		method: 'GET',
-		path: '/PE2/Employees',
-		config: employee.getEmployees
-	},
-	{
-		method: 'GET',
-		path: '/PE2/EmployeeByID/{IDEmployee}',
-		config: employee.getEmployeeByID
-	},
-
-	/*Aqui terminan los endpoints de employee*/
-
-	{
-		method: 'GET',
-		path: '/PE2/logout',
-		config: authentication.logout
-	},
-	{
-		method: 'POST',
-		path: '/PE2/login',
-		config: authentication.login
+		path: '/PE2/BombByID/{IDBomb}',
+		config: bomb.getBombByID
 	}
 ]

@@ -4,12 +4,7 @@ var uniqueValidator = require('mongoose-unique-validator');
 var personSchema = new mongoose.Schema({
 	IDPerson: Number,
 	username: String,
-	password: String,
-	scope: [String],
-	name: String,
-	age: Number,
-	listOfPets: [Number],
-	listOfFriends: [Number]
+	password: String
 });
 
 personSchema.plugin(uniqueValidator);
