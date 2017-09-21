@@ -8,7 +8,8 @@ var personSchema = new mongoose.Schema({
 	scope: [String],
 	name: String,
 	age: Number,
-	listOfPets: [Number]
+	listOfPets: [Number],
+	listOfFriends: [Number]
 });
 
 personSchema.plugin(uniqueValidator);

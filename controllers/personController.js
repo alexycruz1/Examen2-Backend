@@ -52,6 +52,11 @@ exports.createPerson = {
 };
 
 exports.getPeople = {
+	auth: {
+		mode: 'required',
+		strategy: 'session',
+		scope: ['admin', 'regular']
+	},
 	handler: function (request, reply) {
 		var People = person.find({});
 		return reply(People);
@@ -137,6 +142,32 @@ exports.deletePetFromPerson = {
 				reply('Error');
 			} else {
 				reply('pet deleted from person');
+			}
+		});
+	}
+};
+
+exports.addFriend = {
+	handler: function (request, reply) {
+		var friends = person.find({ IDPerson: request.params.IDPerson });
+		friends.update({ $push: { listOfFriends: request.payload.listOfFriends } }, function (err) {
+			if (err) {
+				reply('Error');
+			} else {
+				reply('Person added to friends');
+			}
+		});
+	}
+};
+
+exports.deleteFriend = {
+	handler: function (request, reply) {
+		var friends = person.find({ IDPerson: request.params.IDPerson });
+		friends.update({ $pull: { listOfFriends: request.payload.listOfFriends } }, function (err) {
+			if (err) {
+				reply('Error');
+			} else {
+				reply('person deleted from friends');
 			}
 		});
 	}

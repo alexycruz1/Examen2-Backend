@@ -44,6 +44,16 @@ exports.endpoints = [
 		path: '/PE2/PersonByID/{IDPerson}',
 		config: person.getPersonByID
 	},
+	{
+		method: 'PUT',
+		path: '/IDN/addFriend/{IDPerson}',
+		config: person.addFriend
+	},
+	{
+		method: 'PUT',
+		path: '/IDN/deleteFriend/{IDPerson}',
+		config: person.deleteFriend
+	},
 
 	/*Aqui terminan los endpoints de person*/
 
