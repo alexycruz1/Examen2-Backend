@@ -122,5 +122,5 @@ exports.endpoints = [
 		method: 'POST',
 		path: '/PE2/login',
 		config: authentication.login
-	},
+	}
 ]
