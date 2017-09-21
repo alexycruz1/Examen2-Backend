@@ -22,7 +22,7 @@ db.once('open', function callback() {
 server.register([inert, auth], function(err){
 
  server.auth.strategy('session', 'cookie', {
-    password: /*'minimum-32-characters-password1234567890'*/ 'secretpasswordforencryption',
+    password: 'minimum-32-characters-password1234567890', /*'secretpasswordforencryption',*/
     cookie: 'angular-scaffold-cookie',
     ttl: 24 * 60 * 60 * 1000, // Set session to 1 day
     isSecure: false
